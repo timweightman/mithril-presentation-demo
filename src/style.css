@@ -15,5 +15,6 @@ body {
 
 input {
   font-size: 3vw;
-  padding: 10px;
+  padding: 1vw;
+  margin: 1vw;
 }
