@@ -22,12 +22,20 @@ var input = {
 var navLink = {
   controller: function(args) {
     return {
-      activeClass: m.route() === args.href ? ' active' : ''
+      isActive: m.route() === args.href
     };
   },
   view: function(ctrl, args) {
+    if (ctrl.isActive) {
+      // Render a span if this is the active route.
+      return m('span', {
+        'class': args.classes + ' active'
+      }, args.content || args.href);
+    }
+
+    // Render a link if this is not the active route.
     return m('a', {
-      'class': (args.classes || '') + ctrl.activeClass,
+      'class': (args.classes || ''),
       href: args.href,
       config: m.route
     }, args.content || args.href);
@@ -37,8 +45,8 @@ var navLink = {
 var navigation = {
   view: function() {
     return m('div', [
-      m.component(navLink, {classes: 'nav-link', href: '/', content: 'Default Home'}),
-      m.component(navLink, {classes: 'nav-link', href: '/completed', content: 'Filter = "completed"'}),
+      m.component(navLink, {classes: 'nav-link', href: '/', content: 'Home'}),
+      m.component(navLink, {classes: 'nav-link', href: '/completed', content: 'Completed'}),
       m.component(navLink, {classes: 'nav-link', href: '/about', content: 'About'})
     ]);
   }
@@ -79,7 +87,8 @@ var aboutComponent = {
 
 m.route.mode = 'hash';
 
-m.route(document.querySelector('#mithril-demo'), '/from query param!', {
+m.route(document.querySelector('#mithril-demo'), '/', {
+  '/': homeComponent,
   '/:filter': homeComponent,
   '/about': aboutComponent
 });
