@@ -86,7 +86,8 @@ var aboutComponent = {
 var templateView = function(ctrl, args, views) {
   return m('html', [
     m('head', [
-      m('title', 'Mithril Demo')
+      m('title', 'Mithril Demo'),
+      m('link', {rel: 'stylesheet', type: 'text/css', href: 'style.css' })
     ]),
     m('body', [
       m.component(navigation),
@@ -110,7 +111,12 @@ var templateMixin = function(templateView, views) {
 
 var pageTemplate = function(component) {
   return {
-    controller: component.controller,
+    controller: function(args) {
+      if (component.controller) {
+        return component.controller(args)
+      }
+      return {}
+    },
     view: templateMixin(templateView, {
       content: component.view
     })
@@ -122,7 +128,7 @@ var pageAbout = pageTemplate(aboutComponent)
 
 m.route.mode = 'hash'
 
-m.route(document.querySelector('#mithril-demo'), '/', {
+m.route(document, '/', {
   '/': pageHome,
   '/:filter': pageHome,
   '/about': pageAbout
