@@ -1,11 +1,11 @@
-'use strict';
-var m = require('mithril');
+'use strict'
+var m = require('mithril')
 
-require('./style.css');
+require('./style.css')
 
 var input = {
   view: function(ctrl, args) {
-    var inputAttributes = args.input || {};
+    var inputAttributes = args.input || {}
 
     return m('div', [
       m('label', args.label || ''),
@@ -15,16 +15,16 @@ var input = {
         name: inputAttributes.name || '',
         type: inputAttributes.type || 'text'
       })
-    ]);
+    ])
   }
-};
+}
 
 // Most basic of all.
 var homeComponent = {
   controller: function() {
     return {
       input: m.prop('Home')
-    };
+    }
   },
   view: function(ctrl) {
     return m('div', [
@@ -36,8 +36,8 @@ var homeComponent = {
         }
       }),
       m('h1', ctrl.input())
-    ]);
+    ])
   }
-};
+}
 
-m.mount(document.querySelector('#mithril-demo'), homeComponent);
+m.mount(document.querySelector('#mithril-demo'), homeComponent)
