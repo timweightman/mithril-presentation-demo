@@ -8,17 +8,42 @@
 }
 
 body {
+  background: #ededed;
   font-family: helvetica, arial, arial, sans-serif;
-  font-size: 3vw;
+  font-size: 7vw;
+  text-transform: lowercase;
   text-align: center;
+  margin-top: 5vw;
+  width: 100%;
+}
+
+div {
+  background: #fff;
+  border-radius: 1vw;
+  border: 1px solid #fff;
+  margin: 5vw;
+  padding: 2vw;
+}
+
+div div {
+  margin: 0 auto;
+  padding: 0;
+}
+
+label, input {
+  font-size: 7vw;
+  width: 50%;
 }
 
 input {
-  font-size: 3vw;
   padding: 1vw;
   margin: 1vw;
 }
 
+h1, h2, h3, ul, ul li, p {
+  text-transform: none;
+}
+
 .nav-link {
-  margin: 1vw;
+  margin: 2vw;
 }
