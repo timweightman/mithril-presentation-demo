@@ -3,6 +3,22 @@ var m = require('mithril')
 
 require('./style.css')
 
+var input = {
+  view: function(ctrl, args) {
+    var inputAttributes = args.input || {}
+
+    return m('div', [
+      m('label', args.label || ''),
+      m('input', {
+        oninput: m.withAttr('value', args.bind),
+        value: args.bind(),
+        name: inputAttributes.name || '',
+        type: inputAttributes.type || 'text'
+      })
+    ])
+  }
+}
+
 // Most basic of all.
 var homeComponent = {
   controller: function() {
@@ -12,7 +28,13 @@ var homeComponent = {
   },
   view: function(ctrl) {
     return m('div', [
-      m('input', {oninput: m.withAttr('value', ctrl.input), value: ctrl.input()}),
+      m.component(input, {
+        label: 'Filter',
+        bind: ctrl.input,
+        input: {
+          name: 'filter'
+        }
+      }),
       m('h1', ctrl.input())
     ])
   }
