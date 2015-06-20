@@ -63,7 +63,6 @@ var homeComponent = {
   },
   view: function(ctrl) {
     return m('div', [
-      m.component(navigation),
       m.component(input, {
         label: 'Filter',
         bind: ctrl.input,
@@ -79,16 +78,52 @@ var homeComponent = {
 var aboutComponent = {
   view: function() {
     return m('div', [
-      m.component(navigation),
       m('p', 'This is a demo project that shows step-by-step how common web problems are solved using Mithril.')
     ])
   }
 }
 
+var templateView = function(ctrl, args, views) {
+  return m('html', [
+    m('head', [
+      m('title', 'Mithril Demo')
+    ]),
+    m('body', [
+      m.component(navigation),
+      views.content,
+      m('footer', 'Footer content'),
+      m.trust('<script src="index.js"></script>')
+    ])
+  ])
+}
+
+var templateMixin = function(templateView, views) {
+  return function(ctrl, args) {
+    var renderedContent = {}
+    Object.keys((views || {})).forEach(function(key) {
+      renderedContent[key] = views[key](ctrl, args)
+    })
+
+    return templateView(ctrl, args, renderedContent)
+  }
+}
+
+var pageTemplate = function(component) {
+  return {
+    controller: component.controller,
+    view: templateMixin(templateView, {
+      content: component.view
+    })
+  }
+}
+
+var pageHome = pageTemplate(homeComponent)
+var pageAbout = pageTemplate(aboutComponent)
+
 m.route.mode = 'hash'
 
 m.route(document.querySelector('#mithril-demo'), '/', {
-  '/': homeComponent,
-  '/:filter': homeComponent,
-  '/about': aboutComponent
+  '/': pageHome,
+  '/:filter': pageHome,
+  '/about': pageAbout
 })
