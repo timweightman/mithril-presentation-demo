@@ -20,13 +20,8 @@ var input = {
 }
 
 var navLink = {
-  controller: function(args) {
-    return {
-      isActive: m.route() === args.href
-    }
-  },
   view: function(ctrl, args) {
-    if (ctrl.isActive) {
+    if (m.route() === args.href) {
       // Render a span if this is the active route.
       return m('span', {
         'class': args.classes + ' active'
@@ -112,6 +107,8 @@ var templateMixin = function(templateView, views) {
 var pageTemplate = function(component) {
   return {
     controller: function(args) {
+      m.redraw.strategy('diff');
+      
       if (component.controller) {
         return component.controller(args)
       }
