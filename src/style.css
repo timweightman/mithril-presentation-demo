@@ -55,6 +55,15 @@ h1, h2, h3, ul, ul li, p {
   text-transform: none;
 }
 
+ul, li {
+  list-style: none;
+}
+
+li {
+  padding: 3vw 1vw;
+  border-bottom: 1px solid #ededed;
+}
+
 .nav-link, .nav-link:visited, .nav-link:focus, .nav-link:active {
   text-decoration: none;
   color: #000;
