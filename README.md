@@ -6,7 +6,9 @@ A small working demo to accompany my [Mithril presentation].
 
 ```bash
 $ npm install -d
-$ npm run start
+$ npm run build
+$ npm run serve
+open http://localhost:3000
 ```
 
 ## License
