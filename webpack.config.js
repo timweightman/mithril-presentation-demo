@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -15,7 +16,7 @@ module.exports = {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.msx$/, loader: 'msx-loader', exclude: /node_modules/ },
-      { test: /\.css$/, loader: 'style!css!' }
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') }
     ]
   },
 
@@ -24,6 +25,7 @@ module.exports = {
   },
 
   plugins: [
+    new ExtractTextPlugin('style.css'),
     new webpack.ProvidePlugin({ m: "mithril" })
   ],
 
@@ -35,9 +37,6 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     quiet: false,
-    port: 3000,
-    proxy: {
-      '/sbos/*': 'http://localhost:8080'
-    }
+    port: 3000
   }
 };
