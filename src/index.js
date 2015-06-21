@@ -12,8 +12,7 @@ var pageAbout = pageTemplate(aboutComponent)
 
 m.route.mode = 'hash'
 
-m.route(document, '/', {
+m.route(document, '/?type=movie', {
   '/': pageHome,
-  '/:filter': pageHome,
   '/about': pageAbout
 })
