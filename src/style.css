@@ -30,7 +30,7 @@ div div {
   padding: 0;
 }
 
-label, input {
+label, input, select {
   display: inline-block;
   font-size: 7vw;
   padding: 1vw 3vw;
@@ -41,7 +41,7 @@ label {
   width: 25%;
 }
 
-input {
+input, select {
   border-radius: 1.5vw;
   border: .5vw solid #aaa;
   border-left: 1px transparent;
