@@ -37,7 +37,10 @@ var homeComponent = {
       }),
       m('ul', ctrl.state.results.map(function(result) {
         return m('li', [
-          result.Title + ' (' + result.Year + ')'
+          m('a', {
+            href: 'http://imdb.com/title/' + result.imdbID,
+            target: '_blank'
+          }, result.Title + ' (' + result.Year + ')')
         ])
       }))
     ])
