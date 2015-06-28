@@ -3,8 +3,6 @@ var m = require('mithril')
 
 require('./style.css')
 
-var media = require('./media')
-
 // TODO Media Search component, will manage our
 // model and delegate to specialised sub-
 // components
