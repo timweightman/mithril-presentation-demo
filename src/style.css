@@ -15,9 +15,12 @@ body {
   text-transform: lowercase;
   text-align: center;
   width: 100%;
+  color: black;
+  text-shadow: 0 .3vw 0 #5a5;
+  text-decoration: none;
 }
 
-div {
+div, ul {
   background: #fff;
   border-radius: 1vw;
   border: 1px solid #fff;
@@ -51,17 +54,31 @@ input, select {
   outline: none;
 }
 
+a {
+  color: black
+}
+
+a:hover {
+  color: #5a5;
+  text-shadow: 0 .2vw 0 black
+}
+
 h1, h2, h3, ul, ul li, p {
   text-transform: none;
 }
 
 ul, li {
   list-style: none;
+  background: white;
 }
 
 li {
   padding: 3vw 1vw;
   border-bottom: 1px solid #ededed;
+}
+
+li a {
+  display: block;
 }
 
 .nav-link, .nav-link:visited, .nav-link:focus, .nav-link:active {
